@@ -21,7 +21,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         resume_id = str(uuid.uuid4())
 
         poller = doc_client.begin_analyze_document(
-            model_id="prebuilt-document",
+            model_id="prebuilt-read",
             body=io.BytesIO(file)
         )
         result = poller.result()
