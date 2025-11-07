@@ -1,5 +1,22 @@
 <html>
 <body>
-<h2>Resume Screening App</h2>
+  <h2>Resume Screening App</h2>
+  <form id="f">
+    <input type="file" id="file"/>
+    <button type="submit">Upload</button>
+  </form>
+  <pre id="output"></pre>
+
+<script>
+document.getElementById('f').onsubmit = async(e)=>{
+  e.preventDefault();
+  let file = document.getElementById("file").files[0];
+  let fd = new FormData();
+  fd.append("file", file);
+
+  let r = await fetch("/api/analyze_resume", { method:"POST", body:fd });
+  document.getElementById("output").innerText = await r.text();
+};
+</script>
 </body>
 </html>
